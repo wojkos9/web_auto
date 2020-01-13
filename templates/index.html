@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script>
+    function reload() {
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+            document.getElementById("mimg").innerHTML = this.responseText;
+            }
+        };
+        xhttp.open("POST", "/data", true);
+        var dt = JSON.stringify({"npoints": ""+document.getElementById("npoints").value});
+        xhttp.send(dt);
+    }
+    </script>
+</head>
+<body>
+    <p>Liczba punktów: <input type="text" id="npoints" value="10"/></p>
+    <input type="button" onclick="reload()" value="send"/>
+    <div id="mimg"></div>
+</body>
+</html>
